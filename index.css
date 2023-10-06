@@ -46,3 +46,23 @@
     flex-direction: column;
     justify-items: flex-start;
 }
+
+.filter-btn {
+    padding: 1em;
+}
+
+.shimmer-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.shimmer-card {
+    margin: 0.5em;
+    width: 15em;
+    height: 25em;
+    background-color: burlywood;
+}
+
+.body-top {
+    display: flex;
+}
