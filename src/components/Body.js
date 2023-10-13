@@ -14,7 +14,14 @@ const Body = () => {
         const jsonData = await data.json();
         
         console.log("fetching again");
-        const restaurantList = jsonData?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        let indexOfRestaurants = 0;
+        for(card of jsonData.data.cards) {
+            if(card?.card?.card?.id === "restaurant_grid_listing") {
+                break;
+            }
+            indexOfRestaurants++;
+        }
+        const restaurantList = jsonData?.data?.cards[indexOfRestaurants]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
         setResList(restaurantList);
         setFilteredList(restaurantList);
     }

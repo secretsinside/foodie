@@ -29,6 +29,7 @@
     height: 25em;
     width: 15em;
     background-color: burlywood;
+    cursor: pointer;
 }
 
 .res-card:hover {
