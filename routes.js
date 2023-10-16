@@ -6,13 +6,23 @@ import Body from './src/components/Body';
 import Contact from './src/components/Contact';
 import RestaurantMenu from './src/components/RestaurantMenu';
 import AboutClass from "./src/components/AboutClass";
+import Cart from "./src/components/Cart";
+import ThemeContext from "./src/utils/ThemeContext";
+import { THEME } from "./src/utils/constants";
+import { useState } from "react";
 
 
 const AppComponent = () => {
+    const [theme, setTheme] = useState(THEME.LIGHT);
     return (
         <>
-            <Header/>
-            <Outlet/>
+        <ThemeContext.Provider value={{
+            theme,
+            setTheme
+        }}>
+                <Header/>
+                <Outlet/>
+        </ThemeContext.Provider>
         </>
     )
 }
@@ -37,6 +47,10 @@ export const appRoutes = createBrowserRouter([
             {
                 path: '/restaurants/:resId',
                 element: <RestaurantMenu/>
+            },
+            {
+                path: '/cart',
+                element: <Cart/>
             }
         ],
         errorElement: <Error/>

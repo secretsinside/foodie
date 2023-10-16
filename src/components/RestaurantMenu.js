@@ -1,8 +1,12 @@
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
+
+    const [showIndex, setShowIndex] = useState(0);
 
     const resInfo = useRestaurantMenu(resId);
     
@@ -11,22 +15,23 @@ const RestaurantMenu = () => {
     }
 
     const {name, cuisines} = resInfo?.cards[0]?.card?.card?.info;
-    const items = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards;
+
+    const categories = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter((card) => {
+        return card?.card?.card?.['@type'].split('.').at(-1).toLowerCase() === "itemcategory"
+    })
 
     return (
         <div className="res-menu">
-            <h1>{name}</h1>
-            <h3>{cuisines.join(', ')}</h3>
+            <p className="text-center font-bold text-2xl">{name}</p>
+            <p className="text-center">{cuisines.join(', ')}</p>
             {
-                items?.length > 0 ? 
-                (
-                    items.map((item) => {
-                        return (
-                            <h4 key={item.card.info.id}>{item.card.info.name} : ₹{item.card.info.price/100} </h4>
-                        )
-                    })
-                ):
-                <h3>Loading menu...</h3>
+                categories.map((category, index) => (
+                    <RestaurantCategory 
+                        key={category?.card?.card?.title.replaceAll(' ', '')} 
+                        category={category}
+                        showItems={index === showIndex}
+                        setShowItems={ (otherIndex) => {setShowIndex(otherIndex !== null ? otherIndex : index)}}/>
+                ))
             }
         </div>
     )
