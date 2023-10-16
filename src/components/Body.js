@@ -37,7 +37,7 @@ const Body = () => {
     }
 
     return (
-        <div className='body'>
+        <div className="dark:bg-gray-700">
             <div className="body-top flex">
                 <div className='search-container m-4 p-4'>
                     <input className='search-bar border border-solid border-black p-3' type='text'/>
@@ -62,7 +62,7 @@ const Body = () => {
                     </button>
                 </div>
             </div>
-            <div className='res-card-container flex flex-wrap'>
+            <div className='res-card-container flex flex-wrap w-10/12 m-auto'>
                 {
                     filteredList.map((restaurant) => (
                         <ResCard key={restaurant.info.id} restaurant={restaurant}/>

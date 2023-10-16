@@ -1,6 +1,17 @@
+import { useDispatch } from "react-redux";
+import { addItem } from "../store/cartSlice";
+
 const ItemList = (props) => {
+
+    const dispatch = useDispatch();
+    
+    const addItemToCart = (item) => {
+        // dispatch addItem action
+        dispatch(addItem(item));
+    }
+
     return (
-        <div>
+        <div className="dark:bg-black dark:text-white">
             {
                 props?.items?.map((item) => (
                     <div 
@@ -12,7 +23,9 @@ const ItemList = (props) => {
                             </div>
                             <div className="text-right">
                                 <p className="text-lg">₹{item?.card?.info?.price/100}</p>
-                                <button className="px-3 py-1 my-2 text-white bg-green-400 rounded-lg text-xs">ADD</button>
+                                <button 
+                                    className="px-3 py-1 my-2 text-white bg-green-400 rounded-lg text-xs"
+                                    onClick={() => {addItemToCart(item)}}>ADD</button>
                             </div>
                     </div>
                 ))

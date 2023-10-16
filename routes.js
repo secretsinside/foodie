@@ -10,20 +10,23 @@ import Cart from "./src/components/Cart";
 import ThemeContext from "./src/utils/ThemeContext";
 import { THEME } from "./src/utils/constants";
 import { useState } from "react";
-
+import { Provider } from "react-redux";
+import appStore from "./src/store/appStore";
 
 const AppComponent = () => {
     const [theme, setTheme] = useState(THEME.LIGHT);
     return (
-        <>
-        <ThemeContext.Provider value={{
-            theme,
-            setTheme
-        }}>
-                <Header/>
-                <Outlet/>
-        </ThemeContext.Provider>
-        </>
+        <div className={`${theme}`}>
+            <Provider store={appStore}>
+                <ThemeContext.Provider value={{
+                    theme,
+                    setTheme
+                }}>
+                        <Header/>
+                        <Outlet/>
+                </ThemeContext.Provider>
+            </Provider>
+        </div>
     )
 }
 

@@ -15,15 +15,13 @@ const ResCard = (props) => {
     }
 
     return (
-        <div className={`${theme}`}>
-            <div className={`res-card m-4 p-4 w-[250px] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 dark:bg-black dark:text-white`}  onClick={showRestaurantDetails}>
-                <img className='res-image rounded-lg' src={'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/' + restaurant.info.cloudinaryImageId}/>
-                <div className='res-details'>
-                    <p className="font-bold pt-2 text-lg">{restaurant.info.name}</p>
-                    <p className="text-sm">{restaurant.info.cuisines.join(', ')}</p>
-                    <p className="bg-green-600 text-white w-10 text-center rounded-xl">{restaurant.info.avgRating}</p>
-                    {restaurant.info.costForTwo}
-                </div>
+        <div className={`res-card m-4 p-4 w-[250px] bg-gray-200 rounded-lg shadow-lg hover:bg-gray-300 dark:bg-black dark:text-white dark:hover:bg-gray-800`}  onClick={showRestaurantDetails}>
+            <img className='res-image rounded-lg' src={'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/' + restaurant.info.cloudinaryImageId}/>
+            <div className='res-details'>
+                <p className="font-bold pt-2 text-lg">{restaurant.info.name}</p>
+                <p className="text-sm">{restaurant.info.cuisines.join(', ')}</p>
+                <p className="bg-green-600 text-white w-10 text-center rounded-xl">{restaurant.info.avgRating}</p>
+                {restaurant.info.costForTwo}
             </div>
         </div>
     )

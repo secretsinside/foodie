@@ -21,7 +21,7 @@ const RestaurantMenu = () => {
     })
 
     return (
-        <div className="res-menu">
+        <div className="res-menu dark:bg-gray-700 dark:text-white">
             <p className="text-center font-bold text-2xl">{name}</p>
             <p className="text-center">{cuisines.join(', ')}</p>
             {
