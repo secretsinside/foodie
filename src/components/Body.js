@@ -38,21 +38,21 @@ const Body = () => {
 
     return (
         <div className='body'>
-            <div className="body-top">
-                <div className='search-container'>
-                    <input className='search-bar' type='text'/>
-                    <input className='search-btn' type='submit' onClick={
+            <div className="body-top flex">
+                <div className='search-container m-4 p-4'>
+                    <input className='search-bar border border-solid border-black p-3' type='text'/>
+                    <button className='search-btn bg-gray-100 px-4 rounded-lg mx-4' type='submit' onClick={
                         () => {
                             const queryString = document.getElementsByClassName('search-bar')[0].value;
                             setFilteredList(
                                 resList.filter(res => res.info.name.toString().toLowerCase().includes(queryString.toLowerCase()))
                             )
                         }
-                    }/>
+                    }>Search</button>
                 </div>
-                <div className='filter'>
+                <div className='filter m-4 p-4'>
                     <button 
-                        className="filter-btn" 
+                        className="filter bg-gray-100 px-4 rounded-lg mx-4" 
                         onClick={() => {
                             setFilteredList(
                                 resList.filter(res => res.info.avgRating > 4)
@@ -62,7 +62,7 @@ const Body = () => {
                     </button>
                 </div>
             </div>
-            <div className='res-card-container'>
+            <div className='res-card-container flex flex-wrap'>
                 {
                     filteredList.map((restaurant) => (
                         <ResCard key={restaurant.info.id} restaurant={restaurant}/>
